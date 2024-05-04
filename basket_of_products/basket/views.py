@@ -1,10 +1,13 @@
-from django.views.generic import CreateView
+from typing import Any
+from django.views.generic import TemplateView
 
-from .forms import ProductForm
 from .models import Product
 
 
-class ProductCreateView(CreateView):
-    model = Product
-    form_class = ProductForm
+class HomePage(TemplateView):
     template_name = 'index.html'
+
+    def get_context_data(self, **kwargs: Any) -> dict[str, Any]:
+        context = super().get_context_data(**kwargs)
+        context['products'] = Product.objects.all()
+        return context
