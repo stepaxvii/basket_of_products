@@ -47,6 +47,7 @@ class Product(BaseModel):
     )
     history = models.TextField(
         verbose_name='История',
+        help_text='интересные факты или история создания',
         blank=True
     )
     image = models.ImageField(
