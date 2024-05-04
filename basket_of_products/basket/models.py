@@ -1,9 +1,7 @@
 from django.db import models
-from django.contrib.auth import get_user_model
 
 from .abstract import BaseModel
 
-User = get_user_model()
 
 class Category(BaseModel):
     title = models.CharField(
@@ -19,13 +17,14 @@ class Category(BaseModel):
         verbose_name='Идентификатор',
         help_text=(
             'Идентификатор страницы для URL;'
-            ' разрешены символы латиницы, цифры, дефис и подчёркивание.'
+            ' разрешены символы латиницы, цифры, дефис и подчёркивание.\n'
+            'Например: для раздела "Супы" подойдёт идентификатор "soup"'
         )
     )
 
     class Meta(BaseModel.Meta):
-        verbose_name = 'категория'
-        verbose_name_plural = 'Категории'
+        verbose_name = 'раздел меню'
+        verbose_name_plural = 'Разделы меню (категории)'
 
     def __str__(self):
         return self.title
@@ -52,17 +51,20 @@ class Product(BaseModel):
         help_text='интересные факты или история создания',
         blank=True
     )
+    weight = models.IntegerField(
+        verbose_name='Выход',
+        default=0,
+        blank=True
+    )
+    price = models.IntegerField(
+        verbose_name='Цена',
+        default=0,
+        blank=True
+    )
     image = models.ImageField(
         verbose_name='Фото',
         upload_to='products_images',
         blank=True
-    )
-    user = models.ForeignKey(
-        User,
-        on_delete=models.CASCADE,
-        null=True,
-        verbose_name='Менеджер',
-        related_name='products'
     )
     category = models.ForeignKey(
         Category,
@@ -74,7 +76,7 @@ class Product(BaseModel):
 
     class Meta(BaseModel.Meta):
         verbose_name = 'Продукт'
-        verbose_name_plural = 'продукция'
+        verbose_name_plural = 'блюда/напитки'
 
     def __str__(self):
         return self.title
