@@ -1,7 +1,9 @@
 from django.db import models
+from django.contrib.auth import get_user_model
 
 from .abstract import BaseModel
 
+User = get_user_model()
 
 class Category(BaseModel):
     title = models.CharField(
@@ -26,7 +28,7 @@ class Category(BaseModel):
         verbose_name_plural = 'Категории'
 
     def __str__(self):
-        return self.title[10]
+        return self.title
 
 
 class Product(BaseModel):
@@ -55,6 +57,13 @@ class Product(BaseModel):
         upload_to='products_images',
         blank=True
     )
+    user = models.ForeignKey(
+        User,
+        on_delete=models.CASCADE,
+        null=True,
+        verbose_name='Менеджер',
+        related_name='products'
+    )
     category = models.ForeignKey(
         Category,
         on_delete=models.SET_NULL,
@@ -68,4 +77,4 @@ class Product(BaseModel):
         verbose_name_plural = 'продукция'
 
     def __str__(self):
-        return self.title[10]
+        return self.title
