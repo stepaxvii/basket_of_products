@@ -14,6 +14,8 @@ MEDIA_ROOT = BASE_DIR / 'media'
 
 INSTALLED_APPS = [
     'basket.apps.BasketConfig',
+    'pages.apps.PagesConfig',
+
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
