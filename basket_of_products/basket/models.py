@@ -1,9 +1,58 @@
 from django.db import models
-
+from django.contrib.auth import get_user_model
 from .abstract import BaseModel
 
 
+# Менеджер, способный создавать ресторан и продукты
+User = get_user_model()
+
+
+class Client(BaseModel):
+    """Модель пользователя, который может просматривать контент."""
+
+    username = models.CharField(
+        max_length=20,
+        verbose_name='Пользователь'
+    )
+    password = models.CharField(
+        max_length=20,
+        verbose_name='Пароль'
+    )
+
+    class Meta(BaseModel.Meta):
+        verbose_name = 'Пользователь'
+        verbose_name_plural = 'пользователи'
+
+    def __str__(self):
+        return f'{self.username}'
+
+
+class Restoran(BaseModel):
+    """Модель ресторана/кафе."""
+
+    name = models.CharField(
+        max_length=50,
+        verbose_name='Ресторан'
+    )
+    email = models.EmailField(
+        max_length=50,
+        verbose_name='Электронная почта',
+        help_text='Укажите эектронную почту ресторана.',
+        null=True,
+        blank=True
+    )
+
+    class Meta(BaseModel.Meta):
+        verbose_name = 'Ресторан'
+        verbose_name_plural = 'рестораны'
+
+    def __str__(self):
+        return f'{self.title}'
+
+
 class Category(BaseModel):
+    """Модель категории блюд/напитков."""
+
     title = models.CharField(
         max_length=20,
         verbose_name='Категория'
@@ -18,19 +67,28 @@ class Category(BaseModel):
         help_text=(
             'Идентификатор страницы для URL;'
             ' разрешены символы латиницы, цифры, дефис и подчёркивание.\n'
-            'Например: для раздела "Супы" подойдёт идентификатор "soup"'
+            'Например: для раздела "Супы" подойдёт идентификатор "soups"'
         )
+    )
+    restoran = models.ForeignKey(
+        Restoran,
+        on_delete=models.SET_NULL,
+        null=True,
+        verbose_name='Ресторан',
+        related_name='categories'
     )
 
     class Meta(BaseModel.Meta):
-        verbose_name = 'раздел меню'
-        verbose_name_plural = 'Разделы меню (категории)'
+        verbose_name = 'Категория'
+        verbose_name_plural = 'категории'
 
     def __str__(self):
-        return self.title
+        return f'категория {self.title}'
 
 
 class Product(BaseModel):
+    """Модель блюда/напитка."""
+
     title = models.CharField(
         verbose_name='Название в меню',
         max_length=40
@@ -73,10 +131,17 @@ class Product(BaseModel):
         verbose_name='Категория',
         related_name='products'
     )
+    restoran = models.ForeignKey(
+        Restoran,
+        on_delete=models.SET_NULL,
+        null=True,
+        verbose_name='Ресторан',
+        related_name='products'
+    )
 
     class Meta(BaseModel.Meta):
         verbose_name = 'Продукт'
         verbose_name_plural = 'блюда/напитки'
 
     def __str__(self):
-        return self.title
+        return f'{self.title}'
