@@ -37,8 +37,21 @@ class Restoran(BaseModel):
     email = models.EmailField(
         max_length=50,
         verbose_name='Электронная почта',
-        help_text='Укажите эектронную почту ресторана.',
+        help_text='Укажите электронную почту ресторана.',
         null=True,
+        blank=True
+    )
+    concept = models.TextField(
+        verbose_name='Концепция',
+        help_text=(
+            'Опишите историю создания вашего заведения,'
+            'его концепцию, особенности.\nВсё, чем оно уникально.'
+        ),
+        blank=True
+    )
+    image = models.ImageField(
+        verbose_name='Фото',
+        upload_to='restorants_images',
         blank=True
     )
 
@@ -47,7 +60,7 @@ class Restoran(BaseModel):
         verbose_name_plural = 'рестораны'
 
     def __str__(self):
-        return f'{self.title}'
+        return f'{self.name}'
 
 
 class Category(BaseModel):
