@@ -1,13 +1,11 @@
-from typing import Any
-from django.views.generic import TemplateView
-
-from .models import Product
+from django.views.generic import ListView
+from .models import Restoran
 
 
-class HomePage(TemplateView):
+class HomePageView(ListView):
+    """CBV для отображения главной страницы."""
+
     template_name = 'index.html'
-
-    def get_context_data(self, **kwargs: Any) -> dict[str, Any]:
-        context = super().get_context_data(**kwargs)
-        context['products'] = Product.objects.all()
-        return context
+    model = Restoran
+    context_object_name = 'restorans'  # Имя переменной контекста для передачи списка ресторанов
+    paginate_by = 3  # Количество ресторанов на одной странице
