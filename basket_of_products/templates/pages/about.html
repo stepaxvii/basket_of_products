@@ -1,113 +1,27 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Главная страница</title>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
-    <style>
-        /* Оформление основного контента */
-        body {
-            background-color: #E2EAB5; /* Цвет фона */
-            padding: 20px;
-        }
+{% extends 'basket/base.html' %}
 
-        /* Оформление навигации */
-        .navbar {
-            margin-bottom: 20px; /* Отступ снизу */
-        }
+{% block title %}
+О проекте
+{% endblock %}
 
-        .nav-link {
-            color: #fff; /* Цвет текста кнопок */
-            background-color: #1C5D17; /* Цвет фона кнопок */
-            border-radius: 5px; /* Закругление углов кнопок */
-            margin-right: 10px; /* Отступ между кнопками */
-            padding: 5px 15px; /* Отступ внутри кнопок */
-        }
-
-        .nav-link:hover {
-            background-color: #155a0d; /* Цвет фона кнопок при наведении */
-        }
-
-        .navbar-brand {
-            color: #fff; /* Цвет текста кнопки "Рестораны" */
-            background-color: #1C5D17; /* Цвет фона кнопки "Рестораны" */
-            border-radius: 5px; /* Закругление углов кнопки "Рестораны" */
-            padding: 5px 15px; /* Отступ внутри кнопки "Рестораны" */
-        }
-
-        .navbar-brand:hover {
-            background-color: #155a0d; /* Цвет фона кнопки "Рестораны" при наведении */
-        }
-
-        /* Оформление контента */
-        .content {
-            background-color: #74A570; /* Цвет фона блока */
-            padding: 30px; /* Внутренний отступ */
-            border-radius: 10px; /* Закругленные углы */
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); /* Тень */
-            color: #343a40; /* Цвет текста */
-        }
-
-        .content h1, .content h2, .content h3, .content p, .content ul {
-            margin-bottom: 20px; /* Отступ снизу */
-        }
-
-        .content ul {
-            padding-left: 20px; /* Отступ для списка */
-        }
-
-        .content ul li {
-            list-style-type: disc; /* Тип маркера списка */
-        }
-    </style>
-</head>
-<body>
-    <!-- Header -->
-    <nav class="navbar navbar-expand-lg">
-        <div class="container-fluid">
-            <a class="navbar-brand" href="{% url 'index' %}">Рестораны</a>
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"></span>
-            </button>
-            <div class="collapse navbar-collapse" id="navbarNav">
-                <ul class="navbar-nav ms-auto">
-                    <li class="nav-item">
-                        <a class="nav-link" href="#">О проекте</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#">Вход</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#">Выход</a>
-                    </li>
-                </ul>
-            </div>
-        </div>
-    </nav>
-
-    <!-- Контент -->
-    <div class="container">
-        <div class="content">
-            <h1>Электронная база данных меню ресторана</h1>
-            <p><h4>Цель - создание электронной базы данных меню ресторана для облегчения работы работников ресторана, обеспечивая им доступ к полной информации о меню, ассортименте и составе блюд.</h4></p>
-            <h2>Основные функции</h2>
-            <ul>
-                <li>В электронной базе данных представлено полное меню ресторана, включая описание, состав и аллергены для каждого блюда.</li>
-                <li>Меню разбито на категории и подкатегории для удобной навигации и поиска.</li>
-                <li>Для каждого блюда будет указан состав, включая ингредиенты и аллергены. Фотографии - при наличии.</li>
-                <li>Меню доступно для просмотра на различных устройствах, включая компьютеры, планшеты и смартфоны.</li>
-            </ul>
+{% block content %}
+<div class="container">
+    <div class="content">
+        <h1>Электронная база данных меню ресторана</h1>
+        <p><h4>Цель - создание электронной базы данных меню ресторана для облегчения работы работников ресторана, обеспечивая им доступ к полной информации о меню, ассортименте и составе блюд.</h4></p>
+        <h2>Основные функции</h2>
+        <ul>
+            <li>В электронной базе данных представлено полное меню ресторана, включая описание, состав и аллергены для каждого блюда.</li>
+            <li>Меню разбито на категории и подкатегории для удобной навигации и поиска.</li>
+            <li>Для каждого блюда будет указан состав, включая ингредиенты и аллергены. Фотографии - при наличии.</li>
+            <li>Меню доступно для просмотра на различных устройствах, включая компьютеры, планшеты и смартфоны.</li>
+        </ul>
             <h2>Польза от проекта</h2>
-            <ul>
-                <li>Работники ресторана смогут быстро и легко найти информацию о любом блюде, что уменьшит время, затрачиваемое на поиск информации.</li>
-                <li>Электронная база данных обеспечит точность информации о меню. Это исключит случаи изучения неактульной информации по блюдам и напиткам.</li>
-                <li>Работники ресторана смогут удобно знакомиться с нововведениямии в меню.</li>
-            </ul>
-        </div>
+        <ul>
+            <li>Работники ресторана смогут быстро и легко найти информацию о любом блюде, что уменьшит время, затрачиваемое на поиск информации.</li>
+            <li>Электронная база данных обеспечит точность информации о меню. Это исключит случаи изучения неактульной информации по блюдам и напиткам.</li>
+            <li>Работники ресторана смогут удобно знакомиться с нововведениямии в меню.</li>
+        </ul>
     </div>
-
-    <!-- Подключение скрипта Bootstrap -->
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
-</body>
-</html>
+</div>
+{% endblock %}
