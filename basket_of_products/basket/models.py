@@ -7,27 +7,7 @@ from .abstract import BaseModel
 User = get_user_model()
 
 
-class Client(BaseModel):
-    """Модель пользователя, который может просматривать контент."""
-
-    username = models.CharField(
-        max_length=20,
-        verbose_name='Пользователь'
-    )
-    password = models.CharField(
-        max_length=20,
-        verbose_name='Пароль'
-    )
-
-    class Meta(BaseModel.Meta):
-        verbose_name = 'Пользователь'
-        verbose_name_plural = 'пользователи'
-
-    def __str__(self):
-        return f'{self.username}'
-
-
-class Restoran(BaseModel):
+class Restaurant(BaseModel):
     """Модель ресторана/кафе."""
 
     name = models.CharField(
@@ -83,8 +63,8 @@ class Category(BaseModel):
             'Например: для раздела "Супы" подойдёт идентификатор "soups"'
         )
     )
-    restoran = models.ForeignKey(
-        Restoran,
+    restaurant = models.ForeignKey(
+        Restaurant,
         on_delete=models.SET_NULL,
         null=True,
         verbose_name='Ресторан',
@@ -144,8 +124,8 @@ class Product(BaseModel):
         verbose_name='Категория',
         related_name='products'
     )
-    restoran = models.ForeignKey(
-        Restoran,
+    restaurant = models.ForeignKey(
+        Restaurant,
         on_delete=models.SET_NULL,
         null=True,
         verbose_name='Ресторан',

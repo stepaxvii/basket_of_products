@@ -1,11 +1,11 @@
 /* Оформление основного контента */
 body {
-    background-color: #E2EAB5; /* Цвет фона */
+    background-color: #d4d9b7; /* Цвет фона */
     padding: 20px;
 }
 
 /* Оформление блока с рестораном */
-.restoran-item {
+.restaurant-item {
     margin-bottom: 20px; /* Отступ между ресторанами */
     padding-bottom: 20px; /* Отступ внизу каждого ресторана */
     border-bottom: 3px solid #1C5D17; /* Черта между ресторанами */
@@ -28,7 +28,7 @@ h1 {
 }
 
 .nav-link {
-    color: #fff; /* Цвет текста кнопок */
+    color: #fff !important; /* Цвет текста кнопок */
     background-color: #1C5D17; /* Цвет фона кнопок */
     border-radius: 5px; /* Закругление углов кнопок */
     margin-right: 10px; /* Отступ между кнопками */
@@ -36,17 +36,19 @@ h1 {
 }
 
 .nav-link:hover {
+    color: #fff !important; /* Цвет текста при наведении */
     background-color: #155a0d; /* Цвет фона кнопок при наведении */
 }
 
 .navbar-brand {
-    color: #fff; /* Цвет текста кнопки "Рестораны" */
+    color: #fff !important; /* Цвет текста кнопки "Рестораны" */
     background-color: #1C5D17; /* Цвет фона кнопки "Рестораны" */
     border-radius: 5px; /* Закругление углов кнопки "Рестораны" */
     padding: 5px 15px; /* Отступ внутри кнопки "Рестораны" */
 }
 
 .navbar-brand:hover {
+    color: #fff !important; /* Цвет текста при наведении */
     background-color: #155a0d; /* Цвет фона кнопки "Рестораны" при наведении */
 }
 
@@ -88,4 +90,17 @@ h1 {
 
 .content ul li {
     list-style-type: disc; /* Тип маркера списка */
+}
+
+/* Оформление футера */
+.footer {
+    color: #343a40; /* Цвет текста */
+    text-align: right; /* Выравнивание текста по правому краю */
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+}
+
+.footer p {
+    margin: 0 10px; /* Отступ между элементами */
 }

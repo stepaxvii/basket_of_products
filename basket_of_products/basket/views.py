@@ -1,21 +1,21 @@
 from django.views.generic import ListView
 
-from .models import Restoran, Product
+from .models import Restaurant, Product
 
 
 class HomePageView(ListView):
     """CBV для отображения главной страницы."""
 
     template_name = 'basket/index.html'
-    model = Restoran
-    context_object_name = 'restorans'
-    paginate_by = 3
+    model = Restaurant
+    context_object_name = 'restaurants'
+    paginate_by = 2
 
 
-class RestoranView(ListView):
+class RestaurantView(ListView):
     """CBV для отображение выбранного ресторана."""
 
-    template_name = 'basket/restoran.html'
-    model = Product
-    context_object_name = 'restorans'
+    template_name = 'basket/restaurant.html'
+    model = Restaurant
+    context_object_name = 'restaurant'
     paginate_by = 3

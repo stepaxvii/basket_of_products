@@ -1,6 +1,6 @@
 from django.contrib import admin
 
-from .models import Category, Product, Restoran
+from .models import Category, Product, Restaurant
 
 
 @admin.register(Category)
@@ -41,8 +41,8 @@ class ProductAdmin(admin.ModelAdmin):
     )
 
 
-@admin.register(Restoran)
-class RestoranAdmin(admin.ModelAdmin):
+@admin.register(Restaurant)
+class RestaurantAdmin(admin.ModelAdmin):
     """Регистрация модели Ресторан в админке."""
 
     list_display = (

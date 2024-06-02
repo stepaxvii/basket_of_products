@@ -11,8 +11,8 @@ urlpatterns = [
         name='index'
     ),
     path(
-        'restoran/<int:pk>',
-        views.RestoranView.as_view(),
-        name='restoran'
+        'restaurant/<int:pk>',
+        views.RestaurantView.as_view(),
+        name='restaurant-detail'
     ),
 ]
