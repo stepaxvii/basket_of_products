@@ -104,3 +104,38 @@ h1 {
 .footer p {
     margin: 0 10px; /* Отступ между элементами */
 }
+
+.restaurant-image {
+    text-align: center;
+}
+
+.restaurant-image img {
+    width: 200px;
+    height: 200px;
+    margin: 20px auto;
+    display: block;
+}
+
+.buttons {
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.buttons a {
+    margin: 10px;
+}
+
+.products {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+.product {
+    margin: 10px;
+    width: 30%;
+}
+
+.product-image{
+    text-align: center;
+}
