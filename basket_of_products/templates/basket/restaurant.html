@@ -1,11 +1,30 @@
 {% extends 'basket/base.html' %}
 
 {% block title %}
-Главная страница
+    {{ restaurant.name }}
 {% endblock %}
 
 {% block content %}
-<div class="container restaurant-container">
-    <p>Я страница отдельного ресторана</p>
-</div>
+    <h1>{{ restaurant.name }}</h1>
+    <h2>Products:</h2>
+    <ul>
+        {% for product in products %}
+            <li>
+                <h3>{{ product.title }}</h3>
+                <p>Category: {{ product.category.title }}</p>
+                {% if product.image %}
+                    <img src="{{ product.image.url }}" alt="{{ product.title }}">
+                {% endif %}
+            </li>
+        {% endfor %}
+    </ul>
+    <h2>Categories:</h2>
+    <ul>
+        {% for category in categories %}
+            <li>
+                <h3>{{ category.title }}</h3>
+                <p>Products: {{ category.products.count }}</p>
+            </li>
+        {% endfor %}
+    </ul>
 {% endblock %}

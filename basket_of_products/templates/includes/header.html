@@ -10,10 +10,10 @@
                     <a class="nav-link" href="{% url 'pages:about' %}">О проекте</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="#">Вход</a>
+                    <a class="nav-link" href="{% url 'basket:restaurant' 1 %}">Вход</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="#">Выход</a>
+                    <a class="nav-link" href="{% url 'basket:restaurant' 2 %}">Выход</a>
                 </li>
             </ul>
         </div>

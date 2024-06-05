@@ -12,7 +12,7 @@ urlpatterns = [
     ),
     path(
         'restaurant/<int:pk>',
-        views.RestaurantView.as_view(),
-        name='restaurant-detail'
+        views.RestaurantDetailView.as_view(),
+        name='restaurant'
     ),
 ]

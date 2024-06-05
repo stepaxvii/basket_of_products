@@ -1,6 +1,7 @@
-from django.views.generic import ListView
+from django.shortcuts import get_object_or_404
+from django.views.generic import DetailView, ListView
 
-from .models import Restaurant, Product
+from .models import Category, Restaurant, Product
 
 
 class HomePageView(ListView):
@@ -12,10 +13,14 @@ class HomePageView(ListView):
     paginate_by = 2
 
 
-class RestaurantView(ListView):
-    """CBV для отображение выбранного ресторана."""
+class RestaurantDetailView(DetailView):
+    """CBV для отображения страницы ресторана."""
 
-    template_name = 'basket/restaurant.html'
     model = Restaurant
-    context_object_name = 'restaurant'
-    paginate_by = 3
+    template_name = 'basket/restaurant.html'
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['products'] = Product.objects.filter(restaurant=self.object)
+        context['categories'] = Category.objects.filter(restaurant=self.object)
+        return context
