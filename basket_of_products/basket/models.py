@@ -14,13 +14,6 @@ class Restaurant(BaseModel):
         max_length=50,
         verbose_name='Ресторан'
     )
-    email = models.EmailField(
-        max_length=50,
-        verbose_name='Электронная почта',
-        help_text='Укажите электронную почту ресторана.',
-        null=True,
-        blank=True
-    )
     concept = models.TextField(
         verbose_name='Концепция',
         help_text=(
@@ -33,6 +26,13 @@ class Restaurant(BaseModel):
         verbose_name='Фото',
         upload_to='restorants_images',
         blank=True
+    )
+    waiter = models.ForeignKey(
+        User,
+        on_delete=models.SET_NULL,
+        null=True,
+        verbose_name='Официант',
+        related_name='waiter'
     )
 
     class Meta(BaseModel.Meta):
@@ -117,6 +117,11 @@ class Product(BaseModel):
         upload_to='products_images',
         blank=True
     )
+    modified_at = models.DateTimeField(
+        verbose_name='Дата и время последнего изменения',
+        auto_now=True
+    )
+
     category = models.ForeignKey(
         Category,
         on_delete=models.SET_NULL,

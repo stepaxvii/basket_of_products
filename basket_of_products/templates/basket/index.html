@@ -19,7 +19,7 @@
             </div>
             <!-- Название ресторана и описание концепции -->
             <div class="col-md-8">
-                <a href="{% url 'basket:restaurant' restaurant.id %}" style="text-decoration: none;"">
+                <a href="{% url 'basket:restaurant' restaurant.id %}" style="text-decoration: none;">
                     <h1>{{ restaurant.name }}</h1>
                 </a>
                 <p class="concept">{{ restaurant.concept| slice:":703" }}...</p>

@@ -12,24 +12,21 @@
             <h1 style="text-align: center; font-size: 48px; font-weight: bold; margin-bottom: 20px;">{{ restaurant.name }}</h1>
         </div>
         <div class="buttons">
-            <a href="#" class="button">Новинки</a>
-            <a href="#" class="button">Категории</a>
+            <a href="#" class="button">Последние изменения</a>
+            <a href="#" class="button">Отдельные категории</a>
         </div>
         <div class="products" style="display: flex; flex-wrap: wrap; justify-content: center;">
-                {% for product in products %}
-                    <div class="product-card" style="width: 33.33%; padding: 20px; box-sizing: border-box;">
-                        <div class="product-image" style="width: 200px;
-                        height: 100px;
-                        object-fit: cover;
-                        border-radius: 10px;">
-                            <img src="{{ product.image.url }}" alt="{{ product.title }}" style="width: 100%; height: 100%;">
-                        </div>
-                        <div class="product-info" style="margin-top: 10px;">
-                            <h2 style="font-size: 18px; margin-bottom: 5px;">{{ product.title }}</h2>
-                            <p style="margin: 5px 0;">{{ product.category }}</p>
-                        </div>
+            {% for product in products %}
+                <div class="product-card" style="width: 33.33%; padding: 20px; box-sizing: border-box; border: 3px solid #1C5D17;">
+                    <div class="product-image" style="width: 200px; height: 100px; object-fit: cover; border-radius: 10px;">
+                        <img src="{{ product.image.url }}" alt="{{ product.title }}" style="width: 100%; height: 100%;">
                     </div>
-                {% endfor %}
-        </div>
+                    <div class="product-info" style="margin-top: 10px;">
+                        <h2 style="font-size: 18px; margin-bottom: 5px;">{{ product.title }}</h2>
+                        <p style="margin: 5px 0;">{{ product.category }}</p>
+                    </div>
+                </div>
+            {% endfor %}
+        </div>        
 </body>
 {% endblock %}
