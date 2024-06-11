@@ -11,8 +11,13 @@ urlpatterns = [
         name='index'
     ),
     path(
+        'restaurants',
+        views.RestaurantsView.as_view(),
+        name='restaurants'
+    ),
+    path(
         'restaurant/<int:pk>',
         views.RestaurantDetailView.as_view(),
-        name='restaurant'
+        name='restaurant_detail'
     ),
 ]
