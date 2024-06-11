@@ -19,6 +19,7 @@ class HomePageView(ListView):
             if self.request.user.is_superuser:
                 return Restaurant.objects.all()
             return Restaurant.objects.filter(waiter=self.request.user)
+        return Restaurant.objects.all()
 
 
 class RestaurantDetailView(DetailView):
