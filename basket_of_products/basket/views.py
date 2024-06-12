@@ -1,4 +1,3 @@
-from django.shortcuts import redirect
 from django.views.generic import DetailView, ListView, TemplateView
 
 from .models import Category, Restaurant, Product
@@ -18,8 +17,6 @@ class RestaurantsView(ListView):
     context_object_name = 'restaurants'
     paginate_by = 2
 
-    # В таком случае не проходит отображение страницы,
-    # если юзер не залогинился.
     def get_queryset(self):
         if self.request.user.is_authenticated:
             if self.request.user.is_superuser:
