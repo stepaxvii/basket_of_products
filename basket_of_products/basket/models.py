@@ -34,6 +34,13 @@ class Restaurant(BaseModel):
         verbose_name='Официант',
         related_name='waiter'
     )
+    manager = models.ForeignKey(
+        User,
+        on_delete=models.SET_NULL,
+        null=True,
+        verbose_name='Менеджер',
+        related_name='manager'
+    )
 
     class Meta(BaseModel.Meta):
         verbose_name = 'Ресторан'
@@ -107,21 +114,11 @@ class Product(BaseModel):
         default=0,
         blank=True
     )
-    price = models.IntegerField(
-        verbose_name='Цена',
-        default=0,
-        blank=True
-    )
     image = models.ImageField(
         verbose_name='Фото',
         upload_to='products_images',
         blank=True
     )
-    modified_at = models.DateTimeField(
-        verbose_name='Дата и время последнего изменения',
-        auto_now=True
-    )
-
     category = models.ForeignKey(
         Category,
         on_delete=models.SET_NULL,
@@ -135,6 +132,10 @@ class Product(BaseModel):
         null=True,
         verbose_name='Ресторан',
         related_name='products'
+    )
+    modified_at = models.DateTimeField(
+        verbose_name='Дата и время последнего изменения',
+        auto_now=True
     )
 
     class Meta(BaseModel.Meta):

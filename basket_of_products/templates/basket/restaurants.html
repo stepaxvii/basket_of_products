@@ -12,14 +12,14 @@
             <!-- Фото ресторана -->
             <div class="col-md-4 mb-3">
                 {% if restaurant.image %}
-                <a href="{% url 'basket:restaurant_detail' restaurant.id %}">
+                <a href="{% url 'basket:restaurant-detail' restaurant.id %}">
                     <img src="{{ restaurant.image.url }}" alt="{{ restaurant.name }}" class="img-fluid">
                 </a>
                 {% endif %}
             </div>
             <!-- Название ресторана и описание концепции -->
             <div class="col-md-8">
-                <a href="{% url 'basket:restaurant_detail' restaurant.id %}" style="text-decoration: none;">
+                <a href="{% url 'basket:restaurant-detail' restaurant.id %}" style="text-decoration: none;">
                     <h1>{{ restaurant.name }}</h1>
                 </a>
                 <p class="concept">{{ restaurant.concept| slice:":703" }}...</p>

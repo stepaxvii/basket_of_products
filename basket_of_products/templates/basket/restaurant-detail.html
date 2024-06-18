@@ -12,7 +12,7 @@
             <h1 style="text-align: center; font-size: 48px; font-weight: bold; margin-bottom: 20px;">{{ restaurant.name }}</h1>
         </div>
         <div class="buttons">
-            <a href="#" class="button">Последние изменения</a>
+            <a href="{% url 'basket:product-detail' '1' %}" class="button">Последние изменения</a>
             <a href="#" class="button">Отдельные категории</a>
         </div>
         <div class="products" style="display: flex; flex-wrap: wrap; justify-content: center;">
@@ -24,9 +24,16 @@
                     <div class="product-info" style="margin-top: 10px;">
                         <h2 style="font-size: 18px; margin-bottom: 5px;">{{ product.title }}</h2>
                         <p style="margin: 5px 0;">{{ product.category }}</p>
+                        <div class="buttons">
+                            <a href="{% url 'basket:product-detail' product.id %}" class="button">more...</a>
+                        </div>
                     </div>
                 </div>
             {% endfor %}
+            {% if user.is_staff or user.is_superuser %}
+                Тут будет кнопка для перехода на страницу создания нового продукта
+                <a href="{% url 'basket:product-create' %}" class="button">Добавить новую позицию</a>
+            {% endif %}
         </div>        
 </body>
 {% endblock %}

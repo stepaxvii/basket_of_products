@@ -18,6 +18,21 @@ urlpatterns = [
     path(
         'restaurant/<int:pk>',
         views.RestaurantDetailView.as_view(),
-        name='restaurant_detail'
+        name='restaurant-detail'
+    ),
+    path(
+        'product/<int:pk>',
+        views.ProductDetailView.as_view(),
+        name='product-detail'
+    ),
+    path(
+        'product-create',
+        views.ProductCreateView.as_view(),
+        name='product-create'
+    ),
+    path(
+        'category-create',
+        views.CategoryCreateView.as_view(),
+        name='category-create'
     ),
 ]

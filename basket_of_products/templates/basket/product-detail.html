@@ -1,0 +1,21 @@
+{% extends 'basket/base.html' %}
+
+{% block title %}
+    {{ product.title }}
+{% endblock %}
+
+{% block content %}
+    <div class="product-image" style="width: 400px; height: 300px; object-fit: cover; border-radius: 10px;">
+        <img src="{{ product.image.url }}" style="width: 100%; height: 100%;">
+    </div>
+    <h1>{{ product.title }}</h1>
+    <p>Состав: {{ product.ingredients }}</p>
+    <p>Аллергены: {{ product.allergens }}</p>
+    <p>Описание: {{ product.description }}</p>
+    <p>История: {{ product.history }}</p>
+    <p>Вес: {{ product.weight }}</p>
+    <p>Фото: {{ product.image }}</p>
+    <p>Категория: {{ product.category }}</p>
+    <p>Ресторан: {{ product.restaurant }}</p>
+    <p>Дата и время последнего изменения: {{ product.modified_at }}</p>
+{% endblock %}

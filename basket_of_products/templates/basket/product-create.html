@@ -1,0 +1,28 @@
+{% extends "basket/base.html" %}
+{% block title %}
+    Новый продукт
+{% endblock %}
+{% block content %}
+    <h2 class="text-center">Добавление нового продукта</h2>
+    <a href="{% url 'basket:category-create' %}" style="text-decoration: none;">Добавте новую категорию меню</a>
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-md-6 col-lg-8">
+                <div class="card mt-5" style="background-color: #74A570; border-radius: 25px;">
+                    <div class="card-body" style="background-color: #74A570; border-radius: 25px;">
+                        <form method="post">
+                            {% csrf_token %}
+                            {% for field in form %}
+                                <div class="form-group">
+                                    <label for="{{ field.id_for_label }}">{{ field.label }}</label>
+                                    {{ field }}
+                                </div>
+                            {% endfor %}
+                            <button type="submit" class="btn btn-primary btn-block" style="background-color: #1C5D17; color: #fff; border: none; border-radius: 50; box-shadow: none; margin-top: 20px;">Сохранить</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}

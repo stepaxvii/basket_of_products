@@ -1,6 +1,17 @@
-from django.views.generic import DetailView, ListView, TemplateView
+from typing import Any
+
+from django.contrib.auth.decorators import user_passes_test
+from django.utils.decorators import method_decorator
+from django.urls import reverse
+from django.views.generic import (
+    CreateView,
+    DetailView,
+    ListView,
+    TemplateView
+)
 
 from .models import Category, Restaurant, Product
+from .forms import CategoryForm, ProductForm
 
 
 class HomePageView(TemplateView):
@@ -29,7 +40,7 @@ class RestaurantDetailView(DetailView):
     """CBV для отображения страницы ресторана."""
 
     model = Restaurant
-    template_name = 'basket/restaurant_detail.html'
+    template_name = 'basket/restaurant-detail.html'
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
@@ -38,3 +49,42 @@ class RestaurantDetailView(DetailView):
         ).order_by('-modified_at')
         context['categories'] = Category.objects.filter(restaurant=self.object)
         return context
+
+
+class ProductDetailView(DetailView):
+    """CBV для просмотра отдельного продукта."""
+    model = Product
+    template_name = 'basket/product-detail.html'
+    context_object_name = 'product'
+
+    def get_context_data(self, **kwargs: Any) -> dict[str, Any]:
+        context = super().get_context_data(**kwargs)
+        return context
+
+
+@method_decorator(
+    user_passes_test(lambda u: u.is_staff or u.is_superuser),
+    name='dispatch'
+)
+class ProductCreateView(CreateView):
+    """CBV форма для создания нового продукта."""
+    model = Product
+    form_class = ProductForm
+    template_name = 'basket/product-create.html'
+
+    def get_success_url(self):
+        return reverse('basket:product-detail', kwargs={'pk': self.object.pk})
+
+
+@method_decorator(
+    user_passes_test(lambda u: u.is_staff or u.is_superuser),
+    name='dispatch'
+)
+class CategoryCreateView(CreateView):
+    """CBV форма для создания нового продукта."""
+    model = Category
+    form_class = CategoryForm
+    template_name = 'basket/category-create.html'
+
+    def get_success_url(self):
+        return reverse('basket:restaurant-detail', kwargs={'pk': self.object.restaurant.pk})
