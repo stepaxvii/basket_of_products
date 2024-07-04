@@ -72,6 +72,11 @@ class ProductCreateView(CreateView):
     form_class = ProductForm
     template_name = 'basket/product-create.html'
 
+    def form_valid(self, form):
+        product = form.save(commit=False)
+        product.save()
+        return super().form_valid(form)
+
     def get_success_url(self):
         return reverse('basket:product-detail', kwargs={'pk': self.object.pk})
 
@@ -87,4 +92,7 @@ class CategoryCreateView(CreateView):
     template_name = 'basket/category-create.html'
 
     def get_success_url(self):
-        return reverse('basket:restaurant-detail', kwargs={'pk': self.object.restaurant.pk})
+        return reverse(
+            'basket:restaurant-detail',
+            kwargs={'pk': self.object.restaurant.pk}
+        )
