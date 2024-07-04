@@ -78,7 +78,7 @@ class ProductCreateView(CreateView):
         return super().form_valid(form)
 
     def get_success_url(self):
-        return reverse('basket:product-detail', kwargs={'pk': self.object.pk})
+        return reverse('basket:restaurant-detail', kwargs={'pk': self.object.restaurant.pk})
 
 
 @method_decorator(
