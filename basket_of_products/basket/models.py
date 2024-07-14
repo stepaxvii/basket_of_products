@@ -83,7 +83,7 @@ class Category(BaseModel):
         verbose_name_plural = 'категории'
 
     def __str__(self):
-        return f'категория {self.title}'
+        return self.title
 
 
 class Product(BaseModel):

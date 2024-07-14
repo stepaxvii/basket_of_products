@@ -1,6 +1,7 @@
 from typing import Any
 
 from django.contrib.auth.decorators import user_passes_test
+from django.db.models import Q
 from django.utils.decorators import method_decorator
 from django.urls import reverse
 from django.views.generic import (
@@ -32,7 +33,9 @@ class RestaurantsView(ListView):
         if self.request.user.is_authenticated:
             if self.request.user.is_superuser:
                 return Restaurant.objects.all()
-            return Restaurant.objects.filter(waiter=self.request.user)
+            return Restaurant.objects.filter(
+                Q(manager=self.request.user) | Q(waiter=self.request.user)
+            )
         return Restaurant.objects.all()
 
 
@@ -62,6 +65,17 @@ class ProductDetailView(DetailView):
         return context
 
 
+class CategoriesView(ListView):
+    """CBV для отображения доступных категорий."""
+    model = Category
+    template_name = 'basket/categories.html'
+
+
+class CategoryDetailView(DetailView):
+    """CBV для отображения отдельной категории."""
+    pass
+
+
 @method_decorator(
     user_passes_test(lambda u: u.is_staff or u.is_superuser),
     name='dispatch'
@@ -78,7 +92,10 @@ class ProductCreateView(CreateView):
         return super().form_valid(form)
 
     def get_success_url(self):
-        return reverse('basket:restaurant-detail', kwargs={'pk': self.object.restaurant.pk})
+        return reverse(
+            'basket:restaurant-detail',
+            kwargs={'pk': self.object.restaurant.pk}
+        )
 
 
 @method_decorator(

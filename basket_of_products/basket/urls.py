@@ -35,4 +35,14 @@ urlpatterns = [
         views.CategoryCreateView.as_view(),
         name='category-create'
     ),
+    path(
+        'categories',
+        views.CategoriesView.as_view(),
+        name='categories'
+    ),
+    path(
+        'category-detail',
+        views.CategoryDetailView.as_view(),
+        'category-detail'
+    ),
 ]
