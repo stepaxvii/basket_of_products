@@ -6,4 +6,9 @@
 
 {% block content %}
     Страница Категорий
+    <div>
+        {% for category in categories %}
+            <a href="{% url 'basket:category-detail' slug=category.slug %}">{{ category.title }}</a>
+        {% endfor %}
+    </div>
 {% endblock %}

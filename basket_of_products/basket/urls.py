@@ -41,8 +41,13 @@ urlpatterns = [
         name='categories'
     ),
     path(
-        'category-detail',
+        'categories/<slug:slug>',
         views.CategoryDetailView.as_view(),
-        'category-detail'
+        name='category-detail'
     ),
+    path(
+        'last-chages',
+        views.LastChangesProductView.as_view(),
+        name='last-chages'
+    )
 ]

@@ -109,9 +109,9 @@ class Product(BaseModel):
         help_text='интересные факты или история создания',
         blank=True
     )
-    weight = models.IntegerField(
-        verbose_name='Выход',
-        default=0,
+    weight = models.CharField(
+        max_length=64,
+        verbose_name='Выход гр./мл.',
         blank=True
     )
     image = models.ImageField(

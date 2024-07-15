@@ -1,9 +1,17 @@
 {% extends 'basket/base.html' %}
 
 {% block title %}
-Категории
+    {{ object.title }}
 {% endblock %}
 
 {% block content %}
-    Страница отдельной категории
+    <h1>{{ object.title }}</h1>
+    <p>{{ object.description }}</p>
+
+    <h2>Продукты в этой категории:</h2>
+    <ul>
+        {% for product in products %}
+            <a href="{% url 'basket:product-detail' product.id %}"><li>{{ product.title }}</li></a>
+        {% endfor %}
+    </ul>
 {% endblock %}

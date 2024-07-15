@@ -1,5 +1,3 @@
-from typing import Any
-
 from django.contrib.auth.decorators import user_passes_test
 from django.db.models import Q
 from django.utils.decorators import method_decorator
@@ -13,6 +11,17 @@ from django.views.generic import (
 
 from .models import Category, Restaurant, Product
 from .forms import CategoryForm, ProductForm
+
+
+def get_user_restaurants(user):
+    """Фильтрация доступных пользователю объектов."""
+    if user.is_authenticated:
+        if user.is_superuser:
+            return Restaurant.objects.all()
+        return Restaurant.objects.filter(
+            Q(manager=user) | Q(waiter=user)
+        )
+    return Restaurant.objects.none()
 
 
 class HomePageView(TemplateView):
@@ -30,13 +39,7 @@ class RestaurantsView(ListView):
     paginate_by = 2
 
     def get_queryset(self):
-        if self.request.user.is_authenticated:
-            if self.request.user.is_superuser:
-                return Restaurant.objects.all()
-            return Restaurant.objects.filter(
-                Q(manager=self.request.user) | Q(waiter=self.request.user)
-            )
-        return Restaurant.objects.all()
+        return get_user_restaurants(self.request.user)
 
 
 class RestaurantDetailView(DetailView):
@@ -45,12 +48,17 @@ class RestaurantDetailView(DetailView):
     model = Restaurant
     template_name = 'basket/restaurant-detail.html'
 
+    def get_queryset(self):
+        return Restaurant.objects.select_related('waiter', 'manager')
+
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         context['products'] = Product.objects.filter(
             restaurant=self.object
-        ).order_by('-modified_at')
-        context['categories'] = Category.objects.filter(restaurant=self.object)
+        ).order_by('-modified_at').select_related('category')
+        context['categories'] = Category.objects.filter(
+            restaurant=self.object
+        ).prefetch_related('products')
         return context
 
 
@@ -60,20 +68,42 @@ class ProductDetailView(DetailView):
     template_name = 'basket/product-detail.html'
     context_object_name = 'product'
 
-    def get_context_data(self, **kwargs: Any) -> dict[str, Any]:
-        context = super().get_context_data(**kwargs)
-        return context
+    def get_context_data(self, **kwargs):
+        return super().get_context_data(**kwargs)
 
 
 class CategoriesView(ListView):
     """CBV для отображения доступных категорий."""
     model = Category
     template_name = 'basket/categories.html'
+    context_object_name = 'categories'
+
+    def get_queryset(self):
+        if self.request.user.is_authenticated:
+            if self.request.user.is_superuser:
+                return Category.objects.all()
+            return Category.objects.filter(
+                restaurant__manager=self.request.user
+            ) | Category.objects.filter(
+                restaurant__waiter=self.request.user
+            )
+        return Category.objects.all()
 
 
 class CategoryDetailView(DetailView):
     """CBV для отображения отдельной категории."""
-    pass
+    model = Category
+    template_name = 'basket/category-detail.html'
+    slug_field = 'slug'
+    slug_url_kwarg = 'slug'
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['products'] = Product.objects.filter(
+            category=self.object,
+            restaurant=self.object.restaurant
+        )
+        return context
 
 
 @method_decorator(
@@ -113,3 +143,17 @@ class CategoryCreateView(CreateView):
             'basket:restaurant-detail',
             kwargs={'pk': self.object.restaurant.pk}
         )
+
+
+class LastChangesProductView(ListView):
+    """CBV для отображения последних добавленных/изменённых продуктов"""
+
+    model = Product
+    template_name = 'basket/last-changes.html'
+    context_object_name = 'products'
+
+    def get_queryset(self):
+        restaurants = get_user_restaurants(self.request.user)
+        return Product.objects.filter(
+            restaurant__in=restaurants
+        ).order_by('-modified_at')

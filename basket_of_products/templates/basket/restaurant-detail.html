@@ -12,7 +12,7 @@
             <h1 style="text-align: center; font-size: 48px; font-weight: bold; margin-bottom: 20px;">{{ restaurant.name }}</h1>
         </div>
         <div class="buttons">
-            <a href="{% url 'basket:product-detail' '1' %}" class="button">Последние изменения</a>
+            <a href="{% url 'basket:last-chages' %}" class="button">Последние изменения</a>
             <a href="{% url 'basket:categories' %}"  class="button">Отдельные категории</a>
         </div>
         <div class="products" style="display: flex; flex-wrap: wrap; justify-content: center;">
