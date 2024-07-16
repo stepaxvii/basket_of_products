@@ -1,5 +1,6 @@
 from django.contrib.auth.decorators import user_passes_test
-from django.db.models import Q
+from django.db.models import F, Q
+from django.utils.functional import cached_property
 from django.utils.decorators import method_decorator
 from django.urls import reverse
 from django.views.generic import (
@@ -51,11 +52,19 @@ class RestaurantDetailView(DetailView):
     def get_queryset(self):
         return Restaurant.objects.select_related('waiter', 'manager')
 
+    @cached_property
+    def product_count(self):
+        return Product.objects.filter(restaurant=self.object).count()
+
+    @cached_property
+    def random_products(self):
+        return list(Product.objects.filter(restaurant=self.object)
+                    .annotate(rank=F('id'))
+                    .order_by('?')[:3])
+
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
-        context['products'] = Product.objects.filter(
-            restaurant=self.object
-        ).order_by('-modified_at').select_related('category')
+        context['products'] = self.random_products
         context['categories'] = Category.objects.filter(
             restaurant=self.object
         ).prefetch_related('products')

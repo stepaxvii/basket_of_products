@@ -109,6 +109,16 @@ class Product(BaseModel):
         help_text='интересные факты или история создания',
         blank=True
     )
+    table_setting = models.CharField(
+        max_length=128,
+        verbose_name='Сервировка',
+        blank=True
+    )
+    gastronomic_pairings = models.CharField(
+        max_length=256,
+        verbose_name='Гастрономические пары',
+        blank=True
+    )
     weight = models.CharField(
         max_length=64,
         verbose_name='Выход гр./мл.',

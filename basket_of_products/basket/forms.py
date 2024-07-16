@@ -28,11 +28,3 @@ class ProductForm(forms.ModelForm):
             'image',
             'restaurant'
         )
-
-    # Не сохраняет изображение в базу данных
-    # Этот метод не пропускает ошибку
-    # def clean_image(self):
-    #     image = self.cleaned_data['image']
-    #     if not image:
-    #         raise forms.ValidationError('Please upload an image')
-    #     return image
