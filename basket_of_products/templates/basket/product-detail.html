@@ -5,20 +5,40 @@
 {% endblock %}
 
 {% block content %}
-    <div class="product-image" style="width: 400px; height: 400px; object-fit: cover; border-radius: 10px;">
-        {% if product.image %}
-            <img src="{{ product.image.url }}" style="width: 100%; height: 100%;">
-        {% else %}
-            <p>Нет изображения</p>
-        {% endif %}
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-md-8">
+                <div class="product-image" style="max-width: 100%; height: auto; border-radius: 10px;">
+                    {% if product.image %}
+                        <img src="{{ product.image.url }}" style="max-width: 100%; height: auto; display: block; margin: 20px auto;">
+                    {% else %}
+                        <p>Нет изображения</p>
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+        <div class="row justify-content-center">
+            <div class="col-md-8">
+                {% if product.ingredients %}
+                <p><d style="font-weight: bold;">Состав:</d> {{ product.ingredients }}</p>
+                {% endif %}
+                {% if product.allergens %}
+                    <p style="font-weight: bold;">Аллергены: {{ product.allergens }}</p>
+                {% endif %}
+                {% if product.description %}
+                <p><d style="font-weight: bold;">Описание:</d> {{ product.description }}</p>
+                {% endif %}
+                {% if product.history %}
+                <p><d style="font-weight: bold;">История:</d> {{ product.history }}</p>
+                {% endif %}
+                {% if product.weight %}
+                <p style="font-weight: bold;">Выход: {{ product.weight }}
+                {% endif %}
+                {% if product.category %}
+                <p>Категория: <a style="font-weight: bold;" href="{% url 'basket:category-detail' slug=product.category.slug %}">{{ product.category }}</a>
+                {% endif %}
+                <p>Последние изменения {{ product.modified_at|date:"d.m.Y" }}</p>
+            </div>
+        </div>
     </div>
-    <h1>{{ product.title }}</h1>
-    <p>Состав: {{ product.ingredients }}</p>
-    <p>Аллергены: {{ product.allergens }}</p>
-    <p>Описание: {{ product.description }}</p>
-    <p>История: {{ product.history }}</p>
-    <p>Вес: {{ product.weight }}</p>
-    <p>Категория: {{ product.category }}</p>
-    <p>Ресторан: {{ product.restaurant }}</p>
-    <p>Дата и время последнего изменения: {{ product.modified_at }}</p>
 {% endblock %}

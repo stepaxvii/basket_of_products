@@ -5,13 +5,22 @@
 {% endblock %}
 
 {% block content %}
-    <h1>{{ object.title }}</h1>
-    <p>{{ object.description }}</p>
-
-    <h2>Продукты в этой категории:</h2>
-    <ul>
-        {% for product in products %}
-            <a href="{% url 'basket:product-detail' product.id %}"><li>{{ product.title }}</li></a>
-        {% endfor %}
-    </ul>
+    <div class="container">
+        <div class="content-wrapper">
+            <h1>{{ object.title }}</h1>
+            <p>{{ object.description }}</p>
+            <div class="row">
+                {% for product in products %}
+                    <div class="col-md-4 mb-4">
+                            <div class="card-body">
+                                <a href="{% url 'basket:product-detail' product.id %}">
+                                <img src="{{ product.image.url }}" alt="{{ product.title }}" class="card-img-top">
+                                <h5 class="card-title">{{ product.title }}</h5>
+                                <p class="card-text modified-date">Последние изменения: {{ product.modified_at|date:"d.m.Y" }}</p></a>
+                            </div>
+                    </div>
+                {% endfor %}
+            </div>
+        </div>
+    </div>
 {% endblock %}

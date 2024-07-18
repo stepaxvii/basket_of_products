@@ -1,0 +1,311 @@
+body {
+    background-color: #72bcf8;
+    font-family: Montserrat, sans-serif;
+    color: #333333;
+}
+
+.container {
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 20px;
+    background-color: #a1e4ec;
+    border: 1px solid #64c5f1;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    border-radius: 10px;
+}
+
+.content-wrapper {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100%;
+}
+
+.content-wrapper h1 {
+    margin-bottom: 30px;
+}
+
+.button-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 15px;
+}
+
+.btn {
+    position: relative;
+    display: inline-block;
+    padding: 10px 20px;
+    color: #0a6912;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    text-decoration: none;
+    font-size: 18px;
+    overflow: hidden;
+    transition: color 0.3s ease-in-out;
+}
+
+.btn:hover {
+    color: #034b0f;
+}
+
+.footer {
+    color: #044913;
+    padding: 30px 0;
+    text-align: center;
+}
+
+.telegram-link {
+    color: #05310e;
+    text-decoration: none;
+    font-size: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-top: 10px;
+}
+
+.telegram-link:hover {
+    color: #137e51;
+}
+
+/* Ссылки */
+a {
+    color: #0c0a08;
+    text-decoration: none;
+}
+
+/* Стиль для заголовка */
+.header {
+    background-color: #659DBD;
+    color: #fff;
+    padding: 10px;
+    text-align: center;
+}
+
+/* Стиль для формы входа */
+.card {
+    background-color: #659DBD;
+    border-radius: 25px;
+}
+
+.card-body {
+    background-color: #659DBD;
+    border-radius: 25px;
+}
+
+.form-group {
+    margin-bottom: 20px;
+}
+
+.form-control {
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+.btn-primary {
+    background-color: #64c5f1;
+    color: #fff;
+    border: none;
+    border-radius: 50;
+    box-shadow: none;
+    margin-top: 20px;
+    padding: 10px;
+}
+
+.btn-primary:hover {
+    background-color: #4bb5e0;
+    color: #fff;
+}
+
+.text-center {
+    text-align: center;
+}
+
+.mt-5 {
+    margin-top: 5%;
+}
+
+.justify-content-center {
+    justify-content: center;
+}
+
+
+
+.col-lg-4 {
+    flex-basis: 33.33333333333333%;
+    max-width: 33.33333333333333%;
+}
+
+/* Стили для страницы категорий */
+.card {
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    background-color: #a1e4ec;
+    border: 1px solid #64c5f1;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    border-radius: 10px;
+}
+
+.card-body {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    padding: 20px;
+}
+
+.card-title {
+    font-size: 18px;
+    font-weight: bold;
+    margin-bottom: 10px;
+}
+
+.modified-date {
+    font-size: 14px;
+    color: #2b2b2b;
+}
+
+.img-fluid {
+    max-width: 100%;
+    height: auto;
+    border-radius: 10px;
+}
+
+.mb-4 {
+    margin-bottom: 1.5rem !important;
+}
+
+.product-image {
+    margin-bottom: 20px;
+}
+
+h1 {
+    font-size: 32px;
+    font-weight: bold;
+    margin-bottom: 20px;
+}
+
+p {
+    margin-bottom: 10px;
+}
+
+.row {
+    display: flex;
+    flex-wrap: wrap;
+    margin-right: -15px;
+    margin-left: -15px;
+}
+
+.col-md-6 {
+    flex-basis: 50%;
+    max-width: 50%;
+    padding: 0 15px;
+}
+
+@media (max-width: 767px) {
+    .col-md-6 {
+        flex-basis: 100%;
+        max-width: 100%;
+    }
+}
+
+
+.restaurant-image {
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.restaurant-img {
+    max-width: 600px;
+    height: auto;
+    margin: 20px auto;
+    display: block;
+    border-radius: 10px;
+}
+
+.restaurant-name {
+    font-size: 48px;
+    font-weight: bold;
+    margin-bottom: 20px;
+}
+
+.buttons {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 20px;
+}
+
+.button {
+    display: inline-block;
+    padding: 10px 20px;
+    margin: 0 10px;
+    background-color: #1C5D17;
+    color: #fff;
+    text-decoration: none;
+    border-radius: 5px;
+    transition: background-color 0.3s ease;
+}
+
+.button-primary {
+    background-color: #64c5f1;
+}
+
+.button-primary:hover {
+    background-color: #4bb5e0;
+}
+
+.button-success {
+    background-color: #28a745;
+}
+
+.button-success:hover {
+    background-color: #218838;
+}
+
+.products {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+.product-card {
+    width: 33.33%;
+    padding: 20px;
+    box-sizing: border-box;
+    border-radius: 10px;
+    background-color: #5b9096;
+    border-color: #366368;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.product-image {
+    width: 200px;
+    height: 200px;
+    object-fit: cover;
+    border-radius: 10px;
+    margin: 0 auto;
+}
+
+.product-img {
+    width: 100%;
+    height: 100%;
+    border-radius: 10px;
+}
+
+.product-info {
+    margin-top: 10px;
+    text-align: center;
+}
+
+.product-title {
+    font-size: 18px;
+    margin-bottom: 5px;
+}
+
+.product-category {
+    margin: 5px 0;
+}

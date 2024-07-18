@@ -5,10 +5,11 @@
 {% endblock %}
 
 {% block content %}
-    Страница Категорий
     <div>
         {% for category in categories %}
-            <a href="{% url 'basket:category-detail' slug=category.slug %}">{{ category.title }}</a>
+            <div class="container">
+                <a href="{% url 'basket:category-detail' slug=category.slug %}"><h5>{{ category.title }}</h5></a>{{ category.description }}
+            </div>
         {% endfor %}
     </div>
 {% endblock %}

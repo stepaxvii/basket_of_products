@@ -1,22 +1,26 @@
 {% extends 'basket/base.html' %}
 
+{% load static %}
+
 {% block title %}
-Главная страница
+    Главная страница
 {% endblock %}
 
 {% block content %}
     <div class="container">
-        <div class="content">
-            <h1>Добро пожаловать в Basket of Products</h1>
-            <p><h4>Здесь ты познакомишься с меню ресторана, в котором тебе предстоит работать.</h4></p>
-            <h2>Навигация по сервису:</h2>
-            <ul>
-                <h4>
-                <li><a href="{% url 'basket:restaurants' %}">Доступные рестораны.</a></li>
-                <li><a href="{% url 'basket:last-chages' %}">Последние изменения в меню.</a></li>
-                <li><a href="{% url 'basket:categories' %}">Категории блюд.</a></li>
-                </h4>
-            </ul>
+        <div class="content-wrapper">
+            <h1>Добро пожаловать в "TastySkills"</h1>
+            <div class="button-container">
+                <a href="{% url 'basket:restaurants' %}" class="btn">
+                    Доступные рестораны
+                </a>
+                <a href="{% url 'basket:last-chages' %}" class="btn">
+                    Последние изменения в меню
+                </a>
+                <a href="{% url 'basket:categories' %}" class="btn">
+                    Категории блюд
+                </a>
+            </div>
         </div>
     </div>
 {% endblock %}

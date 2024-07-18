@@ -3,13 +3,13 @@
     Новый продукт
 {% endblock %}
 {% block content %}
-    <h2 class="text-center">Добавление нового продукта</h2>
-    <a href="{% url 'basket:category-create' %}" style="text-decoration: none;">Добавте новую категорию меню</a>
     <div class="container">
+        <h2 class="text-center">Добавление нового продукта</h2>
         <div class="row justify-content-center">
             <div class="col-md-6 col-lg-8">
-                <div class="card mt-5" style="background-color: #74A570; border-radius: 25px;">
-                    <div class="card-body" style="background-color: #74A570; border-radius: 25px;">
+                <div class="card mt-5" style="border-radius: 25px;">
+                    <div class="card-body" style="border-radius: 25px;">
+                        <a href="{% url 'basket:category-create' %}" class="button button-primary">Добавить новую категорию меню</a>
                         <form method="post" enctype="multipart/form-data">
                             {% csrf_token %}
                             {% for field in form %}
@@ -18,7 +18,7 @@
                                     {{ field }}
                                 </div>
                             {% endfor %}
-                            <button type="submit" class="btn btn-primary btn-block" style="background-color: #1C5D17; color: #fff; border: none; border-radius: 50; box-shadow: none; margin-top: 20px;">Сохранить</button>
+                            <button type="submit" class="btn btn-primary btn-block">Сохранить</button>
                         </form>
                     </div>
                 </div>

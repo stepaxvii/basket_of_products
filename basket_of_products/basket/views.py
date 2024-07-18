@@ -37,7 +37,6 @@ class RestaurantsView(ListView):
     model = Restaurant
     template_name = 'basket/restaurants.html'
     context_object_name = 'restaurants'
-    paginate_by = 2
 
     def get_queryset(self):
         return get_user_restaurants(self.request.user)
