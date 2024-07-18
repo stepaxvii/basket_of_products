@@ -8,23 +8,21 @@
 <div class="container restaurant-container">
     {% for restaurant in restaurants %}
     <div class="restaurant-item">
+        <a href="{% url 'basket:restaurant-detail' restaurant.id %}">
         <div class="row">
             <!-- Фото ресторана -->
             <div class="col-md-4 mb-3">
                 {% if restaurant.image %}
-                <a href="{% url 'basket:restaurant-detail' restaurant.id %}">
                     <img src="{{ restaurant.image.url }}" alt="{{ restaurant.name }}" class="img-fluid">
-                </a>
                 {% endif %}
             </div>
             <!-- Название ресторана и описание концепции -->
             <div class="col-md-8">
-                <a href="{% url 'basket:restaurant-detail' restaurant.id %}" style="text-decoration: none;">
                     <h1>{{ restaurant.name }}</h1>
-                </a>
                 <p class="concept">{{ restaurant.concept|slice:":703" }}...</p>
             </div>
         </div>
+    </a>
     </div>
     {% endfor %}
 </div>

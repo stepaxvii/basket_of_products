@@ -13,7 +13,6 @@
         </div>
         <div class="buttons">
             <a href="{% url 'basket:last-chages' %}" class="button button-primary">Последние изменения</a>
-            <a href="{% url 'basket:categories' %}"  class="button button-primary">Отдельные категории</a>
             {% if user.is_staff or user.is_superuser %}
                 <a href="{% url 'basket:product-create' %}" class="button button-success">Добавить новую позицию</a>
             {% endif %}

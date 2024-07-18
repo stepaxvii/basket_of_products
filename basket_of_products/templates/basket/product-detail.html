@@ -35,7 +35,7 @@
                 <p style="font-weight: bold;">Выход: {{ product.weight }}
                 {% endif %}
                 {% if product.category %}
-                <p>Категория: <a style="font-weight: bold;" href="{% url 'basket:category-detail' slug=product.category.slug %}">{{ product.category }}</a>
+                <p>Категория: <a class="btn btn-secondary" href="{% url 'basket:category-detail' slug=product.category.slug %}">{{ product.category }}</a>
                 {% endif %}
                 <p>Последние изменения {{ product.modified_at|date:"d.m.Y" }}</p>
             </div>
